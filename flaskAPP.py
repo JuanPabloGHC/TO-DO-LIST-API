@@ -42,12 +42,13 @@ def get_task(id):
 def create_task():
     #Se recibe un json?
     if request.json:
-        task = {
-            'id': len(tasks) + 1,
-            'name': request.json['name'],
-            'status': False
-        }
-        tasks.append(task)
+        if request.json['name'] != ' ':
+            task = {
+                'id': len(tasks) + 1,
+                'name': request.json['name'],
+                'status': False
+            }
+            tasks.append(task)
 
         return jsonify({'task': tasks}), 201
         # status: 200 -> OK, 201 -> ok de creación
