@@ -42,7 +42,7 @@ def get_task(id):
 def create_task():
     #Se recibe un json?
     if request.json:
-        if request.json['name'] != ' ':
+        if request.json['name'] != '':
             task = {
                 'id': len(tasks) + 1,
                 'name': request.json['name'],
