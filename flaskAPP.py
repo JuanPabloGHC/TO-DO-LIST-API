@@ -67,7 +67,7 @@ def update_task(id):
             if request.json.get('name'):
                 this_task[0]['name'] = request.json['name']
             #Se recibe un status para actualizar
-            if request.json.get('status'):
+            if request.json.get('status') or not request.json.get('status'):
                 this_task[0]['status'] = request.json['status']
         else:
             abort(404)        
@@ -79,9 +79,11 @@ def update_task(id):
 @app.route(uri + '/<int:id>', methods=['DELETE'])
 def delete_task(id):
     #Buscar elemento con el id en la lista de tasks
+    print(id)
     this_task = [task for task in tasks if task['id'] == id]
+    print(this_task)
     if this_task:
-        tasks.remove(this_task)
+        tasks.remove(this_task[0])
     else:
         abort(404)
     
